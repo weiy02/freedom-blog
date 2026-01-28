@@ -1,63 +1,121 @@
 module.exports = {
-    // 网站的一些基本配置
-    // base:配置部署站点的基础路径，后续再介绍
-    title: 'wangye', // 网站的标题
-    description: '网页描述', // 网站的描述，它将会以 <meta> 标签渲染到当前页面的 HTML 中。
-    head: [
-      ['link', { rel: 'icon', href: '/logo.png' }] // 需要被注入到当前页面的 HTML <head> 中的标签
+  // 基本站点配置
+  title: 'wangye',
+  description: '网页描述',
+  head: [
+    ['link', { rel: 'icon', href: '/logo.png' }],
+    // SEO 相关基础 meta
+    ['meta', { name: 'keywords', content: '博客, 前端, JavaScript, Vue, 技术分享' }],
+    ['meta', { name: 'author', content: 'wangye' }],
+    ['meta', { name: 'viewport', content: 'width=device-width,initial-scale=1,maximum-scale=1' }]
+  ],
+
+  // 使用博客主题，支持分类 / 标签 / 归档等
+  theme: 'reco',
+
+  themeConfig: {
+    type: 'blog',
+    logo: '/logo.png',
+    author: 'wangye',
+    authorAvatar: '/logo.png',
+
+    // 顶部导航
+    nav: [
+      { text: '首页', link: '/', icon: 'reco-home' },
+      { text: '时间轴', link: '/timeline/', icon: 'reco-date' },
+      { text: '分类', link: '/categories/', icon: 'reco-category' },
+      { text: '标签', link: '/tags/', icon: 'reco-tag' },
+      { text: 'GitHub', link: 'https://github.com/', icon: 'reco-github' }
     ],
-    themeConfig: {
-        logo: '/logo.jpg',
-        nav: [
-            { text: 'Home', link: '/' },
-            // 可指定链接跳转模式：默认target: '_blank'新窗口打开，_self当前窗口打开
-            { text: '百度', link: 'https://www.baidu.com' },
-            { text: 'CSDN', link: 'https://blog.csdn.net', target: '_blank' },
-            { text: 'Github', link: 'https://movie.douban.com', target: '_self', rel: '' },
-            // 支持嵌套,形成下拉式的导航菜单
-            {
-              text: '语言',
-              ariaLabel: 'Language Menu',
-              items: [
-                { text: '中文', link: '/language/chinese/' },
-                { text: '英文', link: '/language/english/' }
-              ]
-            }
-          ],
-          sidebar: [
-            {
-              title: '分类1',   // 必要的
-              path: '/categroy1/',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-              collapsable: false,// 是否可折叠，默认为true
-              sidebarDepth: 1,    // 可选的, 默认值是 1
-              children: [
-               {
-                title: '分类1-1',   // 必要的
-                path: '/categroy1/one',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-              
-               },
-               {
-                title: '分类1-2',   // 必要的
-                path: '/categroy1/two',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-              
-               }
-              ]
-            },
-            {
-              title: '分类2',  
-              path: '/categroy2/',    
-              collapsable: true, 
-              children: [
-               {
-                title: '分类2-1',  
-                path: '/categroy2/one'    
-               },
-               {
-                title: '分类2-2',  
-                path: '/categroy2/two'   
-               }
-              ]
-            }
-          ]
-    }
+
+    // 博客配置：自动生成分类 / 标签入口
+    blogConfig: {
+      category: {
+        location: 2, // 在导航栏中的位置
+        text: '分类'
+      },
+      tag: {
+        location: 3,
+        text: '标签'
+      },
+      socialLinks: [
+        // 可以按需补充你的社交链接
+        { icon: 'reco-github', link: 'https://github.com/' }
+      ]
+    },
+
+    // 侧边栏：根据当前页面标题自动生成，提升沉浸式阅读体验
+    subSidebar: 'auto',
+
+    // 多种颜色模式（浅色 / 深色）
+    mode: 'auto', // 根据系统自动切换
+    modePicker: true, // 显示切换按钮
+
+    // 评论系统占位配置（Gitalk/Valine 二选一，按需填写）
+    // Gitalk 配置示例（需要 GitHub OAuth）
+    /*
+    gitalkConfig: {
+      clientID: '你的 GitHub OAuth Client ID',
+      clientSecret: '你的 GitHub OAuth Client Secret',
+      repo: '你的评论仓库名',
+      owner: '你的 GitHub 用户名',
+      admin: ['你的 GitHub 用户名'],
+      distractionFreeMode: false
+    },
+    */
+
+    // Valine 配置示例（需要 LeanCloud）
+    /*
+    valineConfig: {
+      appId: '你的 LeanCloud appId',
+      appKey: '你的 LeanCloud appKey',
+      placeholder: '欢迎评论交流~',
+      notify: false,
+      verify: false,
+      visitor: true, // 开启访问量统计
+      recordIP: true
+    },
+    */
+
+    // 其它 UI 细节
+    noFoundPageByTencent: false,
+    smoothScroll: true
+  },
+
+  plugins: [
+    // 全文搜索
+    ['fulltext-search'],
+
+    // Google Analytics（按需替换 ID）
+    [
+      '@vuepress/google-analytics',
+      {
+        ga: 'UA-XXXXXX-X' // TODO: 替换为你的 Google Analytics ID
+      }
+    ],
+
+    // 百度统计（按需替换 hm ID）
+    [
+      'vuepress-plugin-baidu-tongji',
+      {
+        hm: '你的百度统计 hm ID'
+      }
+    ],
+
+    // SEO 增强
+    [
+      '@vuepress/seo',
+      {
+        // 根据 Frontmatter 自动生成 SEO meta
+      }
+    ],
+
+    // sitemap（需要配置你自己的站点 URL）
+    [
+      'sitemap',
+      {
+        hostname: 'https://你的 GitHub Pages 域名 或 自定义域名'
+      }
+    ]
+  ]
 }

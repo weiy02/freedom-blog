@@ -1,7 +1,4 @@
 {
-  "devDependencies": {
-    "vuepress": "^1.9.10"
-  },
   "name": "YBlog",
   "version": "1.0.0",
   "main": "index.js",
@@ -9,5 +6,14 @@
   "scripts": {
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs"
+  },
+  "devDependencies": {
+    "vuepress": "^1.9.10",
+    "vuepress-theme-reco": "^1.6.17",
+    "vuepress-plugin-fulltext-search": "^2.7.2",
+    "@vuepress/plugin-google-analytics": "^1.9.10",
+    "@vuepress/plugin-seo": "^1.9.10",
+    "vuepress-plugin-baidu-tongji": "^1.0.1",
+    "vuepress-plugin-sitemap": "^2.3.1"
   }
 }
