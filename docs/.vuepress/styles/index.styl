@@ -1,0 +1,46 @@
+/* 阅读模式 & 沉浸式阅读体验相关样式 */
+
+html.reading-mode body {
+  background: #f5f2e9;
+  color: #333;
+}
+
+html.reading-mode .navbar,
+html.reading-mode .sidebar,
+html.reading-mode .page-nav,
+html.reading-mode .page-edit {
+  opacity: 0;
+  pointer-events: none;
+}
+
+html.reading-mode .page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.08);
+  background: #fffefa;
+}
+
+/* 阅读模式切换按钮（右下角浮动按钮） */
+.reading-mode-toggle {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 999;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #3eaf7c;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.reading-mode-toggle:hover {
+  background: #369267;
+}
+
