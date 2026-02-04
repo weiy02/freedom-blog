@@ -1,5 +1,5 @@
 ---
-title: 我的第一篇文章
+title: vue3基础知识
 date: 2026-01-28
 categories:
   - 前端
@@ -9,4 +9,6 @@ tags:
   - VuePress
 ---
 
-这里就是正文内容，可以随便写 Markdown。
+## 路由
+
+## 状态管理

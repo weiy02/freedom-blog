@@ -1,12 +1,16 @@
 module.exports = {
+  // 部署到 GitHub Pages 时的基础路径
+  // 仓库名为 freedom-blog，则 base 必须是 '/freedom-blog/'
+  base: '/freedom-blog/',
+
   // 基本站点配置
-  title: 'wangye',
+  title: 'Freedom',
   description: '网页描述',
   head: [
     ['link', { rel: 'icon', href: '/logo.png' }],
     // SEO 相关基础 meta
     ['meta', { name: 'keywords', content: '博客, 前端, JavaScript, Vue, 技术分享' }],
-    ['meta', { name: 'author', content: 'wangye' }],
+    ['meta', { name: 'author', content: 'Freedom' }],
     ['meta', { name: 'viewport', content: 'width=device-width,initial-scale=1,maximum-scale=1' }]
   ],
 
@@ -16,15 +20,17 @@ module.exports = {
   themeConfig: {
     type: 'blog',
     logo: '/logo.png',
-    author: 'wangye',
-    authorAvatar: '/logo.png',
+    author: 'Freedom',
+    authorAvatar: '/photos/my-avatar.jpg',
 
     // 顶部导航
     nav: [
       { text: '首页', link: '/', icon: 'reco-home' },
       { text: '时间轴', link: '/timeline/', icon: 'reco-date' },
-      { text: '分类', link: '/categories/', icon: 'reco-category' },
-      { text: '标签', link: '/tags/', icon: 'reco-tag' },
+      // 直接跳到当前已有文章所属的第一个分类“前端”，保证能看到文章列表
+      { text: '分类', link: '/categories/前端/', icon: 'reco-category' },
+      // 标签总览页（主题路由为 /tag/，注意是单数）
+      { text: '标签', link: '/tag/', icon: 'reco-tag' },
       { text: 'GitHub', link: 'https://github.com/', icon: 'reco-github' }
     ],
 
@@ -114,7 +120,9 @@ module.exports = {
     [
       'sitemap',
       {
-        hostname: 'https://你的 GitHub Pages 域名 或 自定义域名'
+        // TODO: 将下面的 URL 换成你真实的博客域名
+        // 例如：'https://your-name.github.io/YBlog' 或 'https://blog.your-domain.com'
+        hostname: 'https://weiy02.github.io/freedom-blog'
       }
     ]
   ]

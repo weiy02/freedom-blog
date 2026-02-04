@@ -1,3 +1,20 @@
+/* 全局代码字体：Fira Code Medium（优先） */
+  @font-face
+    font-family 'Fira Code'
+    src url('/fonts/FiraCode-Medium.woff2') format('woff2')
+    font-weight 500
+    font-style normal
+code,
+pre,
+kbd,
+samp,
+.theme-reco-content pre code {
+  font-family: 'Fira Code', 'Fira Code Medium', Menlo, Monaco, Consolas,
+    'Courier New', monospace;
+  font-variant-ligatures: contextual;
+  font-feature-settings: 'calt' 1;
+}
+
 /* 阅读模式 & 沉浸式阅读体验相关样式 */
 
 html.reading-mode body {
@@ -42,5 +59,26 @@ html.reading-mode .page {
 
 .reading-mode-toggle:hover {
   background: #369267;
+}
+
+/* 鼠标点击粒子效果 */
+.click-particles-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.click-particle {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  opacity: 1;
+  will-change: transform, opacity, left, top;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
 }
 
